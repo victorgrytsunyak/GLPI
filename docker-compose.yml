@@ -27,7 +27,6 @@ services:
     networks:
       - glpi-net
 
-
 # GLPI Container
   glpi:
     image: glpi:1.0

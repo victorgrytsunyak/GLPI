@@ -4,7 +4,6 @@
 # Define a timestamp
 timestamp=$(date +"%Y-%m-%d %T")
 
-
 # Create a log entry with the timestamp
 echo "Cron job ran at $timestamp" >> /var/log/mycronjob.log
 
