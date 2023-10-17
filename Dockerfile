@@ -29,6 +29,7 @@ wget \
 
 # Download and extract GLPI
 WORKDIR /tmp
+
 RUN wget https://github.com/glpi-project/glpi/releases/download/10.0.6/glpi-10.0.6.tgz && \
     tar -xzvf glpi-10.0.6.tgz && \
     cp -r ./glpi /var/www/html/ && \
