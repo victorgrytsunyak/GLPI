@@ -29,7 +29,9 @@ services:
 
 # GLPI Container
   glpi:
-    image: glpi:1.0
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: glpi
     ports:
       - "80:80"

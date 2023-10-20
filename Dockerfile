@@ -36,8 +36,7 @@ RUN wget https://github.com/glpi-project/glpi/releases/download/10.0.6/glpi-10.0
     rm glpi-10.0.6.tgz \
     rm -rf /var/www/html/index.html
 COPY 000-default.conf /etc/apache2/sites-available/
-RUN a2enmod rewrite && \
-    service apache2 restart
+RUN a2enmod rewrite
 RUN chown -R www-data:www-data /var/www/html
 
 # Add your cron job script (e.g., cronjob.sh) to the container
