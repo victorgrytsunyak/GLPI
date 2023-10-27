@@ -32,12 +32,14 @@ WORKDIR /tmp
 
 RUN wget https://github.com/glpi-project/glpi/releases/download/10.0.6/glpi-10.0.6.tgz && \
     tar -xzvf glpi-10.0.6.tgz && \
-    cp -r ./glpi /var/www/html/ && \
-    rm glpi-10.0.6.tgz \
-    rm -rf /var/www/html/index.html
-COPY 000-default.conf /etc/apache2/sites-available/
+    cp -r ./glpi /var/www/ && \
+    rm glpi-10.0.6.tgz
+RUN chown -R www-data:www-data /var/www/glpi && \
+    chmod -R 755 /var/www/glpi
+COPY glpi.conf /etc/apache2/sites-available/
+RUN a2ensite glpi.conf
+RUN a2dissite 000-default.conf
 RUN a2enmod rewrite
-RUN chown -R www-data:www-data /var/www/html
 
 # Add your cron job script (e.g., cronjob.sh) to the container
 COPY cronjob.sh /usr/local/bin/
