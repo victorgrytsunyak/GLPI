@@ -33,7 +33,8 @@ WORKDIR /tmp
 RUN wget https://github.com/glpi-project/glpi/releases/download/10.0.6/glpi-10.0.6.tgz && \
     tar -xzvf glpi-10.0.6.tgz && \
     cp -r ./glpi /var/www/ && \
-    rm glpi-10.0.6.tgz
+    rm glpi-10.0.6.tgz && \
+    rm -rf glpi
 RUN chown -R www-data:www-data /var/www/glpi && \
     chmod -R 755 /var/www/glpi
 COPY glpi.conf /etc/apache2/sites-available/
@@ -47,8 +48,6 @@ RUN chmod +x /usr/local/bin/cronjob.sh
 
 # Add the cron job to the crontab
 RUN crontab -l | { cat; echo "*/15 * * * * /usr/local/bin/cronjob.sh"; } | crontab -
-
-WORKDIR /var/www/html/glpi
 
 EXPOSE 80
 
