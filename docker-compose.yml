@@ -32,6 +32,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    image: glpi:10.0.6
     container_name: glpi
     ports:
       - "80:80"

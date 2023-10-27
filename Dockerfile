@@ -40,7 +40,8 @@ RUN chown -R www-data:www-data /var/www/glpi && \
 COPY glpi.conf /etc/apache2/sites-available/
 RUN a2ensite glpi.conf
 RUN a2dissite 000-default.conf
-RUN a2enmod rewrite
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+RUN service apache2 restart
 
 # Add your cron job script (e.g., cronjob.sh) to the container
 COPY cronjob.sh /usr/local/bin/
