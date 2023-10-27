@@ -6,7 +6,7 @@ services:
     image: mariadb:latest
     container_name: mariadb
     env_file:
-      - ./mariadb.env
+      - ./example.env
     volumes:
       - db-data:/var/lib/mysql
     restart: always
